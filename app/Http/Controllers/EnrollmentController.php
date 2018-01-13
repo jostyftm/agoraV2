@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Grade;
+use App\Group;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateStudentEnrollmentRequest;
 
@@ -348,5 +350,19 @@ class EnrollmentController extends Controller
 
         return view('institution.partials.enrollment.index')
                 ->with('enrollments', $enrollments);
+    }
+
+    public function card(Request $request){
+
+        $grades = Grade::all();
+
+        $institution_id = Auth::guard('web_institution')->user()->id;
+        return view('institution.partials.enrollment.card',
+            compact('grades'));
+    }
+
+    public function generateCard(Request $request){
+        $institution_id = Auth::guard('web_institution')->user()->id;
+        return $request->all();
     }
 }
