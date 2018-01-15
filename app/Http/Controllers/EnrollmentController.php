@@ -142,6 +142,8 @@ class EnrollmentController extends Controller
         // STUDENT
         $student = Student::findOrFail($request->student_id);
 
+        // dd($enrollment);
+        
         // ACADEMIC INFORMATION
         $enrollment = new Enrollment($request->all());
         $academic_information = new AcademicInformation($request->all());
@@ -335,7 +337,7 @@ class EnrollmentController extends Controller
     {   
         $institution_id = Auth::guard('web_institution')->user()->id;
 
-        // dd($headquarters);
+        // dd($institution_id);
 
         $enrollments = Enrollment::getByState($state, $institution_id);
 

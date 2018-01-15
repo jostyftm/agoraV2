@@ -39,174 +39,11 @@
 				        <div class="tab-content">
 				        	{{-- PERSONAL INFORMATION --}}
 						    <div role="tabpanel" class="tab-pane active" id="personal_info">
-						    	<div class="container-fluid">
-									{{-- PERSONAL IDENTIFICATION --}}
-									<div id="identification" class="section_inscription">
-										<div class="section_inscription__tittle">
-											<h4>Datos de indentificaión</h4>
-										</div>
-							    		<div class="row">
-							    			<div class="col-md-3">
-							    				<div class="form-group">
-						  							{!! Form::label('name', 'Nombres') !!}
-						  							{!! Form::text('name_dis', $student->name, ['class'=>'form-control', 'disabled']) !!}
-				  								</div>
-							    			</div>
-							    			<div class="col-md-3">
-							    				<div class="form-group">
-						  							{!! Form::label('last_name', 'Apellidos') !!}
-						  							{!! Form::text('last_name_dis', $student->last_name, ['class'=>'form-control', 'disabled']) !!}
-				  								</div>
-							    			</div>
-							    			<div class="col-md-3">
-							    				<div class="form-group">
-						  							{!! Form::label('identification_type_dis', 'Tipo de identificación') !!}
-						  							{!! Form::text('identification_type', $student->identification->identification_type->name, ['class'=>'form-control', 'disabled']) !!}
-				  								</div>
-							    			</div>
-							    			<div class="col-md-3">
-							    				<div class="form-group">
-						  							{!! Form::label('identification_number_dis', 'Número de identificación') !!}
-						  							{!! Form::text('identification_number', $student->identification->identification_number, ['class'=>'form-control', 'disabled']) !!}
-				  								</div>
-							    			</div>
-							    		</div>
-							    		<div class="row">
-							    			<!--  CITY  EXPEDITION / BIRTH-->
-							    			<div class="col-md-3">
-							    				<div class="form-group">
-						  							{!! Form::label('city_expedition_dis', 'Ciudad de expedicción') !!}
-						  							{!! Form::text('city_expedition', $student->identification->city_expedition->name, ['class'=>'form-control', 'disabled']) !!}
-				  								</div>
-							    			</div>
-							    			<div class="col-md-3">
-							    				<div class="form-group">
-						  							{!! Form::label('city_birth_dis', 'Ciudad de nacimiento') !!}
-						  							{!! Form::text('city_birth', $student->identification->city_birth->name, ['class'=>'form-control', 'disabled']) !!}
-				  								</div>
-							    			</div>
-							    			<div class="col-md-3">
-							    				<div class="form-group">
-						  							{!! Form::label('birthdate_dis', 'Fecha de nacimiento') !!}
-						  							{!! Form::text('birthdate_dis', $student->identification->birthdate, ['class'=>'form-control', 'disabled']) !!}
-				  								</div>
-							    			</div>
-							    			<div class="col-md-3">
-							    				<div class="form-group">
-						  							{!! Form::label('gender_dis', 'Genero') !!}
-						  							{!! Form::text('gender', $student->identification->gender->gender, ['class'=>'form-control', 'disabled']) !!}
-				  								</div>
-							    			</div>
-							    		</div>
-									</div>
-									
-									{{-- ADDRESS --}}
-									<div id="identification" class="section_inscription">
-										<div class="section_inscription__tittle">
-											<h4>Dirección Residencia</h4>
-										</div>
-										<div class="row">
-											<div class="col-md-2">
-												<div class="form-group">
-													{!! Form::label('address', 'Dirección') !!}
-													{!! Form::text('adress_dis', $student->address->address, ['class' => 'form-control', 'disabled']) !!}
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													{!! Form::label('neighborhood', 'Barrio') !!}
-													{!! Form::text('neighborhood_dis', $student->address->neighborhood, ['class' => 'form-control', 'disabled']) !!}
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div class="form-group">
-													{!! Form::label('phone', 'Telefono') !!}
-													{!! Form::text('phone_dis', $student->address->phone, ['class' => 'form-control', 'disabled']) !!}
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div class="form-group">
-													{!! Form::label('mobil', 'Celular') !!}
-													{!! Form::text('mobil_dis', $student->address->mobil, ['class' => 'form-control', 'disabled']) !!}
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													{!! Form::label('email', 'Email') !!}
-													{!! Form::text('email_dis', $student->address->email, ['class' => 'form-control', 'disabled']) !!}
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-3">
-												<div class="form-group">
-													{!! Form::label('city', 'Ciudad') !!}
-													{!! Form::text('city_dis', $student->address->city->name, ['class' => 'form-control', 'disabled']) !!}
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													{!! Form::label('zone', 'Zona rural') !!}
-													{!! Form::text('zone_dis', $student->address->zone->name, ['class' => 'form-control', 'disabled']) !!}
-												</div>
-											</div>
-										</div>
-									</div>
-						    	</div>
+						    	@include('institution.partials.enrollment.create.personal_info')
 						    </div>
 						    {{-- ACADEMIC INFORMATION --}}
 						    <div role="tabpanel" class="tab-pane" id="academic_info">
-						    	<div id="identification" class="section_inscription">
-									<div class="section_inscription__tittle">
-										<h4>Información Acdémica</h4>
-									</div>
-							    	<div class="row">
-							    		<div class="col-md-3">
-							    			<div class="form-group{{ $errors->has('academic_character_id') ? ' has-error' : '' }}">
-							    				{!! Form::label('academic_character_id', 'Caracter') !!}
-							    				{!! Form::select('academic_character_id', $characters, old('academic_character_id'), ['class'=>'form-control chosen-select', 'placeholder'=>'caracter académico']) !!}
-							    			</div>
-							    		</div>
-							    		<div class="col-md-3">
-							    			<div class="form-group{{ $errors->has('academic_specialty_id') ? ' has-error' : '' }}">
-							    				{!! Form::label('academic_specialty_id', 'Especialidad') !!}
-							    				{!! Form::select('academic_specialty_id', $specialties, old('academic_specialty_id'), ['class'=>'form-control chosen-select', 'placeholder'=>'especialidad académica']) !!}
-							    			</div>
-							    		</div>
-							    		<div class="col-md-3">
-							    			<div class="form-group{{ $errors->has('has_subsidy') ? ' has-error' : '' }}">
-							    				{!! Form::label('has_subsidy', 'Subsidiado') !!}
-							    				{!! Form::select('has_subsidy', [false=>'no', true=>'si'], old('has_subsidy'), ['class'=>'form-control chosen-select', 'placeholder'=>'Seleccione un tipo de subsidio']) !!}
-							    			</div>
-							    		</div>
-							    	</div>
-							    </div>
-							    {{--  --}}
-							    <div id="identification" class="section_inscription">
-									<div class="section_inscription__tittle">
-										<h4>Información para la matricula</h4>
-									</div>
-									<div class="row">
-										<div class="col-md-3">
-											<div class="form-group{{ $errors->has('headquarter_id') ? ' has-error' : '' }}">
-												{!! Form::label('headquarter_id', 'Sede') !!}
-												{!! Form::select('headquarter_id', $headquarters, old('headquarter_id'), ['placeholder'=>'Seleccione una sede', 'class'=>'form-control chosen-select']) !!}
-											</div>
-										</div>
-										{{-- <div class="col-md-3">
-											<div class="form-group{{ $errors->has('workingday_id') ? ' has-error' : '' }}">
-												{!! Form::label('workingday_id', 'Jornada') !!}
-												{!! Form::select('workingday_id', $journeys, old('workingday_id'), ['placeholder'=>'Seleccione una jornada', 'class'=>'form-control chosen-select', 'id'=>'workingday_id']) !!}
-											</div>
-										</div>
-										<div class="col-md-3">
-											<div class="form-group">
-												{!! Form::label('group_id', 'Grupo') !!}
-												{!! Form::select('group_id', [], old('group_id'), ['class'=>'form-control chosen-group', 'id'=>'group_id', 'data-placeholder'=>'Seleccione un grupo']) !!}
-											</div>
-										</div> --}}
-									</div>
-								</div>
+						    	@include('institution.partials.enrollment.create.academic_info')
 
 						    </div>
 						    {{-- MEDIC INFORMATION --}}
@@ -394,7 +231,7 @@
 							{!! Form::hidden('enrollment_state_id', 1) !!}
 							{!! Form::hidden('enrollment_result_id', 1) !!}
 							{!! Form::hidden('student_id', $student->id, ['id'=>'student_id']) !!}
-							{!! Form::hidden('url', env('APP_URL'), ['id'=>'url']) !!}
+							{!! Form::hidden('AppUrl', env('APP_URL'), ['id'=>'AppUrl']) !!}
 				  			{!! Form::submit('Guardar Inscripción', ['class'=>'btn btn-primary']) !!}
 						</div>
 					</div>

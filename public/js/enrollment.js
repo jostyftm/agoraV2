@@ -1,8 +1,9 @@
 $(document).ready(function(){
 
 	var student_id = $('#student_id').val(),
-        url = $("#url").val();
+        AppUrl = $("#AppUrl").val();
 
+        console.log(AppUrl);
 	$('.chosen-select').chosen({width: "100%"});
 
 	$('.chosen-group, .chosen-it, .chosen-ice, .chosen-icb, .chosen-ig, .chosen-ac, .chosen-az, .chosen-ri').chosen({width: "100%"});
@@ -10,30 +11,30 @@ $(document).ready(function(){
 	$('.chosen-select-deselect').chosen({ allow_single_deselect: true });
 
     // LOAD THE WORKINGDAY 
-    // $('#workingday_id, #headquarter_id').change(function(e){
+    $('#workingday_id, #headquarter_id').change(function(e){
 
-    // 	var group_select = $('#group_id'),
-    // 	workingday_id = $('#workingday_id').val(),
-    // 	headquarter_id = $('#headquarter_id').val();
+    	var group_select = $('#group_id'),
+    	workingday_id = $('#workingday_id').val(),
+    	headquarter_id = $('#headquarter_id').val();
 
-    // 	$.get("/ajax/group/getByWorkingday", {workingday_id, headquarter_id}, function($response){
+    	$.get(AppUrl+"/ajax/group/getByWorkingday", {workingday_id, headquarter_id}, function($response){
 
-    // 		console.log($response);
+    		console.log($response);
 
-    // 		group_select.empty();
-    // 		$(".chosen-group").trigger("chosen:updated");
+    		group_select.empty();
+    		$(".chosen-group").trigger("chosen:updated");
 
-    // 		if($response.length > 0){
-    // 			$.each($response, function(key, element){
+    		if($response.length > 0){
+    			$.each($response, function(key, element){
 
-    // 				group_select.append('<option value='+element.id+'>'+element.name+'<option>');
-    // 			});
+    				group_select.append('<option value='+element.id+'>'+element.name+'<option>');
+    			});
 
-    // 			$(".chosen-group").trigger("chosen:updated");
-    // 		}
+    			$(".chosen-group").trigger("chosen:updated");
+    		}
 
-    // 	}, "json");
-    // });
+    	}, "json");
+    });
 
 	// DATE 
 	$('.datepicker').datepicker({
@@ -51,7 +52,7 @@ $(document).ready(function(){
 		},
 		"ajax": {
 			"method": "GET",
-			"url": url+"/ajax/student/getFamily/"+student_id
+			"url": AppUrl+"/ajax/student/getFamily/"+student_id
 		},
 		"columns": [
 		{ "data": "name" },
@@ -79,13 +80,14 @@ $(document).ready(function(){
 		var that = $(this),
 		modalEdit = $('#modalEditFamily'),
 		modalDelete = $('#modalDeleteFamily'),
-		url = url+'/institution/student/'+that.data('action')+'/'+that.data('id');
+		url = AppUrl+'/institution/student/'+that.data('action')+'/'+that.data('id');
 
 		
 
 		switch(that.attr('data-method')){
 			case "edit":
-				$.get(url+'/ajax/student/getFamilyById/'+that.data('id'), function(response){
+            console.log(AppUrl);
+				$.get(AppUrl+'/ajax/student/getFamilyById/'+that.data('id'), function(response){
 
 					var form = modalEdit.find('form');
 					form.attr('action', url);
@@ -120,7 +122,7 @@ $(document).ready(function(){
 			break;
 
 			case "delete":
-				$.get(url+'/ajax/student/getFamilyById/'+that.data('id'), function(response){
+				$.get(AppUrl+'/ajax/student/getFamilyById/'+that.data('id'), function(response){
 					
 					var formD = modalDelete.find('form');
 					formD.attr('action', url);

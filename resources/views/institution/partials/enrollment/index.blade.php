@@ -17,7 +17,7 @@
 			  	</div>
 			  	<div class="panel-body">
 
-			  		<table class="table">
+			  		<table class="table" id="table">
 			  			<thead>
 			  				<tr>
 			  					<th>Nombres</th>
@@ -50,4 +50,19 @@
 			</div>
 		</div>
 	</div>
+@endsection
+
+@section('js')
+	<script>
+		$(document).ready(function(){
+
+			$(".table").DataTable( {
+				"language": {
+				    "url": "{{asset('DataTables/languaje/Spanish.json')}}"
+				},
+				"info":     false,
+				"autoWidth": false,
+		    });
+		});
+	</script>
 @endsection

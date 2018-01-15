@@ -388,6 +388,7 @@
 							{!! Form::hidden('socioeconomic_information_id', $enrollment->student->socioeconomicInformation->id) !!}
 							{!! Form::hidden('territorialty_id', $enrollment->student->territorialty->id) !!}
 							{!! Form::hidden('student_id', $enrollment->student->id, ['id'=>'student_id']) !!}
+							{!! Form::hidden('AppUrl', env('APP_URL'), ['id'=>'AppUrl']) !!}
 				  			{!! Form::submit('Actualizar Inscripción', ['class'=>'btn btn-primary']) !!}
 						</div>
 					</div>

@@ -38,7 +38,7 @@
 							<a href="{{ url('/institution/logout') }}"
 							onclick="event.preventDefault();
 							document.getElementById('logout-form').submit();">
-							Logout
+							Salir
 						</a>
 
 							<form id="logout-form" action="{{ url('/institution/logout') }}" method="POST" style="display: none;">
