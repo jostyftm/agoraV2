@@ -11,13 +11,13 @@
         <title>@yield('title')</title>
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
+        {{-- <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}"> --}}
         <link href="{{asset('css/app.css')}}" rel="stylesheet">
         @yield('css')
 
         <!-- Scripts -->
-        <script src="{{asset('js/jquery.min.js')}}"></script>
-        <script src="{{asset('js/bootstrap.js')}}"></script>
+         <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
+        <script src="{{asset('js/bootstrap.js')}}"></script> 
         <script>
             window.Laravel = <?php echo json_encode([
                 'csrfToken' => csrf_token(),

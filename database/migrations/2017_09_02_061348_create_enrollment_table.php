@@ -22,12 +22,6 @@ class CreateEnrollmentTable extends Migration
             $table->foreign('student_id')
                   ->references('id')->on('student')
                   ->onDelete('cascade');
-
-            // Relación Sede
-            $table->integer('headquarter_id')->unsigned();
-            $table->foreign('headquarter_id')
-                  ->references('id')->on('headquarter')
-                  ->onDelete('cascade');
                   
             // Relacion Salon de clase
             $table->integer('group_id')->nullable()->unsigned();

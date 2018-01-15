@@ -405,9 +405,9 @@
 @endsection
 
 @section('js')
-<script src="{{asset('js/chosen.jquery.js')}}"></script>
+ <script src="{{asset('js/chosen.jquery.js')}}"></script>
 <script src="{{asset('js/bootstrap-datepicker.js')}}"></script>
 <script src="{{asset('js/jquery.dataTables.js')}}"></script>
 <script src="{{asset('js/dataTables.bootstrap.min.js')}}"></script>
-<script src="{{asset('js/enrollment.js')}}"></script>
+<script src="{{asset('js/enrollment.js')}}"></script> 
 @endsection

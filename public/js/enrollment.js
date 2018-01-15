@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
-	var student_id = $('#student_id').val();
+	var student_id = $('#student_id').val(),
+        url = $("#url").val();
 
 	$('.chosen-select').chosen({width: "100%"});
 
@@ -50,7 +51,7 @@ $(document).ready(function(){
 		},
 		"ajax": {
 			"method": "GET",
-			"url":"/ajax/student/getFamily/"+student_id
+			"url": url+"/ajax/student/getFamily/"+student_id
 		},
 		"columns": [
 		{ "data": "name" },
@@ -78,13 +79,13 @@ $(document).ready(function(){
 		var that = $(this),
 		modalEdit = $('#modalEditFamily'),
 		modalDelete = $('#modalDeleteFamily'),
-		url = '/institution/student/'+that.data('action')+'/'+that.data('id');
+		url = url+'/institution/student/'+that.data('action')+'/'+that.data('id');
 
 		
 
 		switch(that.attr('data-method')){
 			case "edit":
-				$.get('/ajax/student/getFamilyById/'+that.data('id'), function(response){
+				$.get(url+'/ajax/student/getFamilyById/'+that.data('id'), function(response){
 
 					var form = modalEdit.find('form');
 					form.attr('action', url);
@@ -119,7 +120,7 @@ $(document).ready(function(){
 			break;
 
 			case "delete":
-				$.get('/ajax/student/getFamilyById/'+that.data('id'), function(response){
+				$.get(url+'/ajax/student/getFamilyById/'+that.data('id'), function(response){
 					
 					var formD = modalDelete.find('form');
 					formD.attr('action', url);
