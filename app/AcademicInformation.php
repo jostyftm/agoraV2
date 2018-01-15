@@ -29,7 +29,7 @@ class AcademicInformation extends Model
      */
     public function academicCharacter()
     {
-        return $this->brlongsTo('App\AcademicCharacter', 'academic_character_id ');
+        return $this->belongsTo('App\AcademicCharacter', 'academic_character_id ');
     }
 
     /**
@@ -37,6 +37,6 @@ class AcademicInformation extends Model
      */
     public function academicSpecialty()
     {
-        return $this->brlongsTo('App\AcademicSpecialty', 'academic_specialty_id');
+        return $this->belongsTo('App\AcademicSpecialty', 'academic_specialty_id');
     }
 }

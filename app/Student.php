@@ -105,7 +105,7 @@ class Student extends Model
      */
     public function relationship()
     {
-        return  $this->belongsToMany('App\RelationshipFamily', 'family_relationship_student')
+        return  $this->belongsToMany('App\RelationShipFamily', 'family_relationship_student')
                 ->withPivot('family_id');
     }
 
@@ -116,5 +116,44 @@ class Student extends Model
     public function enrollments()
     {
         return $this->hasMany('App\Enrollment', 'student_id');
+    }
+
+    /**
+     * Obtiene todas las relaciones existentes de students
+     */
+    public static function getInformationsAll($student_id){
+        $student = self::findOrfail($student_id);
+
+        $student->identification->identification_type;
+        $student->identification->gender;
+        $student->identification->city_expedition;
+        $student->identification->city_birth;
+
+        $student->address;
+        $student->address->zone;
+
+        $student->academicInformation;
+        $student->academicInformation->academicCharacter;
+        $student->academicInformation->academicSpecialty;
+
+        $student->medicalInformation;
+        $student->medicalInformation->eps;
+        $student->medicalInformation->blood_type;
+
+        $student->displacement;
+        $student->displacement->victimOfConflict;
+
+        $student->socioeconomicInformation;
+        $student->socioeconomicInformation->stratum;
+
+        $student->territorialty;
+
+        $student->capacities;
+        $student->discapacities;
+
+        $student->family;
+
+        return $student;
+
     }
 }
