@@ -394,6 +394,7 @@
 							{!! Form::hidden('enrollment_state_id', 1) !!}
 							{!! Form::hidden('enrollment_result_id', 1) !!}
 							{!! Form::hidden('student_id', $student->id, ['id'=>'student_id']) !!}
+							{!! Form::hidden('url', route('student.getFamily',$student), ['id'=>'url']) !!}
 				  			{!! Form::submit('Guardar Inscripción', ['class'=>'btn btn-primary']) !!}
 						</div>
 					</div>

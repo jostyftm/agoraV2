@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default no-margin" id="nav">
 	<div class="image">
-      <img src="{{asset('img/institution/picture').'/'.Auth::guard('web_institution')->user()->id.'.jpg'}}" alt="" class="img-responsive" width="35">
+      {{-- <img src="{{asset('img/institution/picture').'/'.Auth::guard('web_institution')->user()->id.'.jpg'}}" alt="" class="img-responsive" width="35"> --}}
    	</div>
 	<!-- <div class="container"> -->
 		<div class="navbar-header fixed-brand">

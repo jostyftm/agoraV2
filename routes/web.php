@@ -13,7 +13,8 @@
 
 Route::get('/', function () {
 
-	return redirect()->route('institution.login');
+	return view('home.index');
+	// return redirect()->route('institution.login');
     // return view('welcome');
 });
 
@@ -25,7 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix'=>'ajax'], function(){
 
 	Route::get('/group/getByWorkingday', 'GroupController@getByWorkingDay');
-	Route::get('/student/getFamily/{id}', 'StudentController@getFamily');
+	Route::get('/student/getFamily/{id}', 'StudentController@getFamily')->name('student.getFamily');
 	Route::get('/student/getFamilyById/{id}', 'StudentController@getFamilyById');
 	
 });
