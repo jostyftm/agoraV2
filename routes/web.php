@@ -64,6 +64,8 @@ Route::group(['prefix'=>'institution', 'middleware' => 'institution_auth'], func
 	Route::resource('enrollment', 'EnrollmentController');
 	Route::get('enrollment/create/{id}', 'EnrollmentController@createById')->name('enrollment.create');
 	Route::get('enrollment/lists/{state}', 'EnrollmentController@lists')->name('enrollment.lists');
+	Route::get('enrollment-card', 'EnrollmentController@card')->name('enrollment.card');
+    Route::post('enrollment-card/generate', 'EnrollmentController@generateCard')->name('enrollment.card.generate');
 
 	// Ruta para estudiante
 	Route::resource('student', 'StudentController');

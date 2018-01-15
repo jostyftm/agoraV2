@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Grade;
+use App\Group;
+use App\Helpers\GenerateEnrollmentCard;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateStudentEnrollmentRequest;
 
@@ -44,7 +47,7 @@ class EnrollmentController extends Controller
      */
     public function index($state = 1)
     {
-        
+
         return view('institution.partials.enrollment.index');
     }
 
@@ -54,20 +57,20 @@ class EnrollmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
 
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @param  int  
+     * @param  int
      * @return \Illuminate\Http\Response
      */
     public function createById($id)
-    {   
+    {
         $institution_id = Auth::guard('web_institution')->user()->id;
-        
+
         $student = Student::findOrFail($id);
         $student->identification;
         $student->identification->identification_type;
@@ -109,34 +112,34 @@ class EnrollmentController extends Controller
         $relationship_types = RelationShipFamily::orderBy('type', 'ASC')->pluck('type', 'id');
 
         // dd($student);
-        
-        return  view('institution.partials.enrollment.create')
-                ->with('student', $student)
-                ->with('characters', $characters)
-                ->with('specialties', $specialties)
-                ->with('eps', $eps)
-                ->with('blood_types', $blood_types)
-                ->with('victims', $victims)
-                ->with('stratums', $stratums)
-                ->with('capacities', $capacities)
-                ->with('discapacities', $discapacities)
-                ->with('identification_types', $identifications)
-                ->with('cities', $cities)
-                ->with('genders', $genders)
-                ->with('zones', $zones)
-                ->with('relationship_types', $relationship_types)
-                ->with('headquarters', $headquarters)
-                ->with('journeys', $journeys);
+
+        return view('institution.partials.enrollment.create')
+            ->with('student', $student)
+            ->with('characters', $characters)
+            ->with('specialties', $specialties)
+            ->with('eps', $eps)
+            ->with('blood_types', $blood_types)
+            ->with('victims', $victims)
+            ->with('stratums', $stratums)
+            ->with('capacities', $capacities)
+            ->with('discapacities', $discapacities)
+            ->with('identification_types', $identifications)
+            ->with('cities', $cities)
+            ->with('genders', $genders)
+            ->with('zones', $zones)
+            ->with('relationship_types', $relationship_types)
+            ->with('headquarters', $headquarters)
+            ->with('journeys', $journeys);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateStudentEnrollmentRequest $request)
-    {   
+    {
 
 
         // STUDENT
@@ -157,16 +160,16 @@ class EnrollmentController extends Controller
         $displacement = new Displacement($request->all());
         $displacement->save();
 
-        
+
         // SOCIOECONOMIC INFORMATION
         $socioeconomic = new SocioEconomicInformation($request->all());
         $socioeconomic->save();
-        
+
 
         // TERRITORIALTY
         $territorialty = new Territorialty($request->all());
         $territorialty->save();
-        
+
         // CAPACITIES AND DISCAPACITIES
         $student->capacities()->sync($request->capacity_id);
         $student->discapacities()->sync($request->discapacity_id);
@@ -177,7 +180,7 @@ class EnrollmentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -188,7 +191,7 @@ class EnrollmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -236,34 +239,34 @@ class EnrollmentController extends Controller
 
         // dd($enrollment);
         return view('institution.partials.enrollment.edit')
-                ->with('enrollment', $enrollment)
-                ->with('characters', $characters)
-                ->with('specialties', $specialties)
-                ->with('eps', $eps)
-                ->with('blood_types', $blood_types)
-                ->with('victims', $victims)
-                ->with('stratums', $stratums)
-                ->with('capacities', $capacities)
-                ->with('discapacities', $discapacities)
-                ->with('identification_types', $identifications)
-                ->with('cities', $cities)
-                ->with('genders', $genders)
-                ->with('zones', $zones)
-                ->with('relationship_types', $relationship_types)
-                ->with('headquarters', $headquarters)
-                ->with('journeys', $journeys)
-                ->with('student', $enrollment->student);
+            ->with('enrollment', $enrollment)
+            ->with('characters', $characters)
+            ->with('specialties', $specialties)
+            ->with('eps', $eps)
+            ->with('blood_types', $blood_types)
+            ->with('victims', $victims)
+            ->with('stratums', $stratums)
+            ->with('capacities', $capacities)
+            ->with('discapacities', $discapacities)
+            ->with('identification_types', $identifications)
+            ->with('cities', $cities)
+            ->with('genders', $genders)
+            ->with('zones', $zones)
+            ->with('relationship_types', $relationship_types)
+            ->with('headquarters', $headquarters)
+            ->with('journeys', $journeys)
+            ->with('student', $enrollment->student);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   
+    {
         // STUDEN
         $student = Student::findOrFail($request->student_id);
 
@@ -289,18 +292,17 @@ class EnrollmentController extends Controller
         $displacement->save();
 
 
-
         // SOCIOECONOMIC INFORMARTION
         $socioeconomic = SocioeconomicInformation::findOrFail($request->socioeconomic_information_id);
         $socioeconomic->fill($request->all());
         // $socioeconomic->save();
-        $socioeconomic->amcf = ($request->has('amcf')) ? 1 : 0 ;
-        $socioeconomic->bhdmcf = ($request->has('bhdmcf')) ? 1 : 0 ;
-        $socioeconomic->bvfp = ($request->has('bvfp')) ? 1 : 0 ;
-        $socioeconomic->bhn = ($request->has('bhn')) ? 1 : 0 ;
+        $socioeconomic->amcf = ($request->has('amcf')) ? 1 : 0;
+        $socioeconomic->bhdmcf = ($request->has('bhdmcf')) ? 1 : 0;
+        $socioeconomic->bvfp = ($request->has('bvfp')) ? 1 : 0;
+        $socioeconomic->bhn = ($request->has('bhn')) ? 1 : 0;
 
         // dd($request->all());
-        
+
         // TERRITORIALTY
         $territorialty = Territorialty::findOrFail($request->territorialty_id);
         $territorialty->fill($request->all());
@@ -317,7 +319,7 @@ class EnrollmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -328,18 +330,18 @@ class EnrollmentController extends Controller
     /**
      * List all Enrollment
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function lists($state)
-    {   
+    {
         $institution_id = Auth::guard('web_institution')->user()->id;
 
         // dd($headquarters);
 
         $enrollments = Enrollment::getByState($state, $institution_id);
 
-        $enrollments->each(function($enrollments){
+        $enrollments->each(function ($enrollments) {
             $enrollments->student->identification->identification_type;
             $enrollments->headquarter;
         });
@@ -347,6 +349,30 @@ class EnrollmentController extends Controller
         // dd($enrollments);
 
         return view('institution.partials.enrollment.index')
-                ->with('enrollments', $enrollments);
+            ->with('enrollments', $enrollments);
     }
+
+    public function card()
+    {
+
+        $grades = Grade::all();
+
+        $institution_id = Auth::guard('web_institution')->user()->id;
+        return view('institution.partials.enrollment.card',
+            compact('grades'));
+    }
+
+    public function generateCard(Request $request)
+    {
+        $institution_id = Auth::guard('web_institution')->user()->id;
+        $grade_id = $request->grade_id;
+        $students_enrollment_card = Enrollment::getEnrollmentCard($grade_id, $institution_id);
+        $print = new GenerateEnrollmentCard();
+        $print->generateEnrollmentCard($students_enrollment_card, $institution_id);
+        $print->Output('D', 'fichaMatricula.pdf');
+        //return $students_enrollment_card;
+
+    }
+
+
 }
