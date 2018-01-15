@@ -118,6 +118,15 @@ class Student extends Model
         return $this->hasMany('App\Enrollment', 'student_id');
     }
 
+    public  static function getParents($student_id, $family_student){
+        return Student::join('family_relationship_student', 'student.id', '=', 'family_relationship_student.student_id')
+            ->select('family_relationship_student.relationship_id')
+            ->where('student.id', $student_id)
+            ->where('family_relationship_student.family_id', $family_student)
+            ->get()[0];
+
+    }
+
     /**
      * Obtiene todas las relaciones existentes de students
      */

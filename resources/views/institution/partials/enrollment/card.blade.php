@@ -29,6 +29,7 @@
                                 </select>
                             </div>
                         </div>
+                        <!--
                         <div class="col-md-3">
                             <div class="form-group">
                                 {!! Form::label('school_year', 'Año Lectivo')!!}
@@ -36,6 +37,7 @@
                                 'placeholder'=>'Seleccione un año']) !!}
                             </div>
                         </div>
+                        -->
                         <div class="col-md-3">
                             <div class="form-group" style="padding-top: 25px;">
                                 {!! Form::submit('Generar Fichas', ['class'=>'btn btn-primary']) !!}
