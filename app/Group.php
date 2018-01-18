@@ -24,7 +24,7 @@ class Group extends Model
      */
     public function enrollments()
     {
-        return $this->hasMany('App\Enrollment', 'group_id');
+        return $this->hasMany(Enrollment::class, 'group_id');
     }
 
  	/**
@@ -41,6 +41,14 @@ class Group extends Model
     public function headquarter()
     {
         return $this->belongsTo('App\Headquarter', 'headquarter_id');
+    }
+
+    /**
+     * Obtiene la relacion que hay entre el grupo y el grado
+     */
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class, 'grade_id');
     }
 
  	/**

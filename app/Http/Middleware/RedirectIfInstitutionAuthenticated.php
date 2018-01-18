@@ -27,7 +27,7 @@ class RedirectIfInstitutionAuthenticated
         //If request comes from logged in seller, he will
         //be redirected to seller's home page.
         if (Auth::guard('web_institution')->check()) {
-            return redirect('/institution_home');
+            return redirect('/institution');
         }
 
         return $next($request);

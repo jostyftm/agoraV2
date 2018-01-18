@@ -193,6 +193,24 @@
 												{!! Form::select('headquarter_id', $headquarters, $enrollment->headquarter_id, ['placeholder'=>'Seleccione una sede', 'class'=>'form-control chosen-select']) !!}
 											</div>
 										</div>
+										<div class="col-md-3">
+											<div class="form-group{{ $errors->has('workingday_id') ? ' has-error' : '' }}">
+												{!! Form::label('workingday_id', 'Jornada') !!}
+												{!! Form::select('workingday_id', $journeys, ($enrollment->group != null) ? $enrollment->group->workingday_id : null, ['placeholder'=>'Seleccione una jornada', 'class'=>'form-control chosen-select', 'id'=>'workingday_id']) !!}
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+												{!! Form::label('group_id', 'Grupo') !!}
+												{!! Form::select('group_id', $groups, ($enrollment->group == null) ? null : $enrollment->group_id, ['class'=>'form-control chosen-group', 'id'=>'group_id', 'data-placeholder'=>'Seleccione un grupo']) !!}
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+												{!! Form::label('grade_id', 'Grado') !!}
+												{!! Form::text('grade_id', ($enrollment->group_id == null) ? '' : $enrollment->group->grade->name, ['class'=>'form-control', 'id'=>'grade_id', 'disabled'=>true]) !!}
+											</div>
+										</div>
 									</div>
 								</div>
 

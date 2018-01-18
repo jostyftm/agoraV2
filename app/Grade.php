@@ -13,4 +13,12 @@ class Grade extends Model
  		'name',
  		'academic_level',
  	];	
+
+ 	/**
+     * Obtiene la relacion que hay entre el grupo y el grado
+     */
+    public function group()
+    {
+        return $this->belongsTo(Group::class, 'grade_id');
+    }
 }
