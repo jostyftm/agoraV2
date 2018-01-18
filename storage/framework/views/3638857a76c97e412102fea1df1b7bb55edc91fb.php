@@ -5,6 +5,12 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">Iniciar sesión</div>
                 <div class="panel-body">
+                    <div class="alert alert-info">
+                        <h4>Atención</h4>
+                        <p>
+                            Por el momento solo se tiene acceso a las secretaria de las instituciones.
+                        </p>
+                    </div>
                     <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/institution_login')); ?>">
                         <?php echo e(csrf_field()); ?>
 
@@ -36,26 +42,20 @@
                                 <?php endif; ?>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" <?php echo e(old('remember') ? 'checked' : ''); ?>> Recuerdame
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Iniciar sesión
                                 </button>
+                            </div>
+                        </div>
 
-                                <a class="btn btn-link" href="<?php echo e(url('/institution_password/reset')); ?>">
-                                    Olvide mi contraseña?
-                                </a>
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <hr>
+                                <p>
+                                    Para consultar datos o tener información del Año anterior click <a href="">Aqui</a>
+                                </p>
                             </div>
                         </div>
                     </form>

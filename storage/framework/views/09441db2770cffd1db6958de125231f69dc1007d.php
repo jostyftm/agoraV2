@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default no-margin" id="nav">
 	<div class="image">
-      <img src="<?php echo e(asset('img/institution/picture').'/'.Auth::guard('web_institution')->user()->id.'.jpg'); ?>" alt="" class="img-responsive" width="35">
+      
    	</div>
 	<!-- <div class="container"> -->
 		<div class="navbar-header fixed-brand">

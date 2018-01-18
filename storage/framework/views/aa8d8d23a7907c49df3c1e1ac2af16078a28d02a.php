@@ -11,13 +11,13 @@
         <title><?php echo $__env->yieldContent('title'); ?></title>
 
         <!-- Styles -->
-        <link rel="stylesheet" href="<?php echo e(asset('css/font-awesome.min.css')); ?>">
+        
         <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
         <?php echo $__env->yieldContent('css'); ?>
 
         <!-- Scripts -->
-        <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
-        <script src="<?php echo e(asset('js/bootstrap.js')); ?>"></script>
+         <script src="<?php echo e(asset('js/jquery-3.2.1.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/bootstrap.js')); ?>"></script> 
         <script>
             window.Laravel = <?php echo json_encode([
                 'csrfToken' => csrf_token(),

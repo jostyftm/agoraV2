@@ -352,7 +352,7 @@ class EnrollmentController extends Controller
             ->with('enrollments', $enrollments);
     }
 
-    public function card()
+    public function cardGrade()
     {
 
         $grades = Grade::all();
@@ -360,6 +360,27 @@ class EnrollmentController extends Controller
         $institution_id = Auth::guard('web_institution')->user()->id;
         return view('institution.partials.enrollment.card',
             compact('grades'));
+    }
+
+    public function cardGroup()
+    {
+        $institution_id = Auth::guard('web_institution')->user()->id;
+
+        $groups = Group::getAllByInstitution($institution_id);
+
+        $institution_id = Auth::guard('web_institution')->user()->id;
+        return view('institution.partials.enrollment.card',
+            compact('groups'));
+    }
+
+    public function cardStudent()
+    {
+        $student = true;
+
+
+        $institution_id = Auth::guard('web_institution')->user()->id;
+        return view('institution.partials.enrollment.card',
+            compact('student'));
     }
 
     public function generateCard(Request $request)
@@ -372,6 +393,19 @@ class EnrollmentController extends Controller
         $print->Output('D', 'fichaMatricula.pdf');
         //return $students_enrollment_card;
 
+    }
+
+    public function enrollmentAutocomplete(Request $request)
+    {
+        $term = $request->text;
+        $data = Student::where('name', 'LIKE', '%' . $term . '%')
+            ->take(10)
+            ->get();
+        $result = array();
+        foreach ($data as $key => $value) {
+            $result[] = ['value' => $value->name];
+        }
+        return response()->json($result);
     }
 
 
