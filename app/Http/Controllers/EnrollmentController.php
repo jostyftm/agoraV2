@@ -145,6 +145,8 @@ class EnrollmentController extends Controller
         // STUDENT
         $student = Student::findOrFail($request->student_id);
 
+        // dd($enrollment);
+        
         // ACADEMIC INFORMATION
         $enrollment = new Enrollment($request->all());
         $academic_information = new AcademicInformation($request->all());
@@ -197,23 +199,30 @@ class EnrollmentController extends Controller
     public function edit($id)
     {
         $enrollment = Enrollment::findOrFail($id);
-        $enrollment->headquarter;
-        $enrollment->student->academicInformation;
-        $enrollment->student->medicalInformation;
-        $enrollment->student->displacement;
-        $enrollment->student->socioeconomicInformation;
-        $enrollment->student->territorialty;
-        $enrollment->student->capacities;
-        $enrollment->student->discapacities;
+        // $enrollment->headquarter;
+        // $enrollment->student->academicInformation;
+        // $enrollment->student->medicalInformation;
+        // $enrollment->student->displacement;
+        // $enrollment->student->socioeconomicInformation;
+        // $enrollment->student->territorialty;
+        // $enrollment->student->capacities;
+        // $enrollment->student->discapacities;
 
         $institution_id = Auth::guard('web_institution')->user()->id;
 
         // dd($enrollment);
         // ACADEMIC INFORMATION
+        $groups = array();
         $characters = AcademicCharacter::orderBy('name', 'ASC')->pluck('name', 'id');
         $specialties = AcademicSpecialty::orderBy('name', 'ASC')->pluck('name', 'id');
         $headquarters = Headquarter::where('institution_id', '=', $institution_id)->orderBy('name', 'ASC')->pluck('name', 'id');
         $journeys = Workingday::orderBy('id', 'ASC')->pluck('name', 'id');
+
+        if($enrollment->group != null)
+            $groups = Group::where([
+                ['working_day_id', '=', $enrollment->group->workingday->id],
+                ['headquarter_id','=',$enrollment->headquarter_id]
+            ])->orderBy('grade_id','ASC')->pluck('name', 'id');
 
         // MEDICAL INFORMATION
         $eps = Eps::orderBy('name', 'ASC')->pluck('name', 'id');
@@ -242,6 +251,7 @@ class EnrollmentController extends Controller
             ->with('enrollment', $enrollment)
             ->with('characters', $characters)
             ->with('specialties', $specialties)
+            ->with('groups',$groups)
             ->with('eps', $eps)
             ->with('blood_types', $blood_types)
             ->with('victims', $victims)
@@ -337,7 +347,7 @@ class EnrollmentController extends Controller
     {
         $institution_id = Auth::guard('web_institution')->user()->id;
 
-        // dd($headquarters);
+        // dd($institution_id);
 
         $enrollments = Enrollment::getByState($state, $institution_id);
 

@@ -11,13 +11,15 @@
         <title>@yield('title')</title>
 
         <!-- Styles -->
-        {{-- <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}"> --}}
         <link href="{{asset('css/app.css')}}" rel="stylesheet">
+        <link rel="stylesheet" href="{{asset('plugin/DataTables/datatables.css')}}">
+        <link rel="stylesheet" href="{{asset('plugin/DataTables/dataTables.bootstrap.min.css')}}">
         @yield('css')
 
         <!-- Scripts -->
          <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
         <script src="{{asset('js/bootstrap.js')}}"></script> 
+        <script src="{{asset('plugin/fontawesome5/svg-with-js/js/fontawesome-all.js')}}"></script>
         <script>
             window.Laravel = <?php echo json_encode([
                 'csrfToken' => csrf_token(),
@@ -51,6 +53,8 @@
         <!-- Scripts -->
         
         <script src="{{asset('js/app.js')}}"></script>
+        <script src="{{asset('plugin/DataTables/datatables.min.js')}}"></script>
+        <script src="{{asset('plugin/DataTables/dataTables.bootstrap.min.js')}}"></script>
         @yield('js')
 
     </body>
