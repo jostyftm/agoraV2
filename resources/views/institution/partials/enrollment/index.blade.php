@@ -23,9 +23,9 @@
 			  					<th>Nombres</th>
 			  					<th>Apellidos</th>
 			  					<th>Tipo de identificación</th>
-			  					<th>Número de identificación</th>
+			  					<th>N° de identificación</th>
 			  					<th>Sede</th>
-			  					{{-- <th>Grupo</th> --}}
+			  					<th>Grupo</th>
 			  					<th></th>
 			  				</tr>
 			  			</thead>
@@ -37,7 +37,7 @@
 									<td>{{ $enrollment->student->identification->identification_type->name}}</td>
 									<td>{{ $enrollment->student->identification->identification_number}}</td>
 									<td>{{ $enrollment->headquarter->name}}</td>
-									{{-- <td>{{ $enrollment->group->name}}</td> --}}
+									<td>{{ ($enrollment->group != null) ? $enrollment->group->name : ''}}</td>
 
 									<td>
 										<a href="{{ route('enrollment.edit', $enrollment->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
@@ -58,7 +58,7 @@
 
 			$(".table").DataTable( {
 				"language": {
-				    "url": "{{asset('DataTables/languaje/Spanish.json')}}"
+				    "url": "{{asset('plugin/DataTables/languaje/Spanish.json')}}"
 				},
 				"info":     false,
 				"autoWidth": false,

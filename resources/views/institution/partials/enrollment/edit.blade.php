@@ -196,7 +196,7 @@
 										<div class="col-md-3">
 											<div class="form-group{{ $errors->has('workingday_id') ? ' has-error' : '' }}">
 												{!! Form::label('workingday_id', 'Jornada') !!}
-												{!! Form::select('workingday_id', $journeys, ($enrollment->group != null) ? $enrollment->group->workingday_id : null, ['placeholder'=>'Seleccione una jornada', 'class'=>'form-control chosen-select', 'id'=>'workingday_id']) !!}
+												{!! Form::select('workingday_id', $journeys, ($enrollment->group != null) ? $enrollment->group->working_day_id : null, ['placeholder'=>'Seleccione una jornada', 'class'=>'form-control chosen-select', 'id'=>'workingday_id']) !!}
 											</div>
 										</div>
 										<div class="col-md-3">

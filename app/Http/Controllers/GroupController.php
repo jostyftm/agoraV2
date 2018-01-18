@@ -27,7 +27,6 @@ class GroupController extends Controller
         $groups = Group::getAllByInstitution($institution_id);
 
         $groups->each(function($groups){
-
             $groups->workingday;
             $groups->headquarter;
         });

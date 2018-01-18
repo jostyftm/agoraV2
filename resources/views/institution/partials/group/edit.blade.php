@@ -82,6 +82,29 @@
 			{!! Form::close()!!}
     	</div>
     </div>
+
+    {{--  --}}
+    <div class="row">
+    	<div class="col-md-12">
+    		<div class="panel panel-default">
+    			<div class="panel-heading">
+    				<h4>Alumnos</h4>
+    			</div>
+    			<div class="panel-body">
+    				<table class="table">
+    					<thead>
+    						<tr>
+    							<th>Nomobres</th>
+    							<th>Apellidos</th>
+    							<th>Tipo Doc.</th>
+    							<th>Num. Documento</th>
+    						</tr>
+    					</thead>
+    				</table>
+    			</div>
+    		</div>
+    	</div>
+    </div>
 @endsection
 
 @section('js')

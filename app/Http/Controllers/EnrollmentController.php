@@ -219,7 +219,10 @@ class EnrollmentController extends Controller
         $journeys = Workingday::orderBy('id', 'ASC')->pluck('name', 'id');
 
         if($enrollment->group != null)
-            $groups = Group::where('working_day_id', '=', $enrollment->group->workingday->id)->orderBy('grade_id','ASC')->pluck('name', 'id');
+            $groups = Group::where([
+                ['working_day_id', '=', $enrollment->group->workingday->id],
+                ['headquarter_id','=',$enrollment->headquarter_id]
+            ])->orderBy('grade_id','ASC')->pluck('name', 'id');
 
         // MEDICAL INFORMATION
         $eps = Eps::orderBy('name', 'ASC')->pluck('name', 'id');
