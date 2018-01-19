@@ -102,6 +102,7 @@ class GroupController extends Controller
         $journeys = Workingday::orderBy('id', 'ASC')->pluck('name', 'id');
 
         $group = Group::findOrFail($id);
+        
 
         return view('institution.partials.group.edit')
                 ->with('headquarters', $headquarters)

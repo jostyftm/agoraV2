@@ -87,8 +87,13 @@
     <div class="row">
     	<div class="col-md-12">
     		<div class="panel panel-default">
-    			<div class="panel-heading">
-    				<h4>Alumnos</h4>
+    			<div class="panel-heading clearfix">
+    				<h4 class="pull-left">Alumnos</h4>
+    				<div class="pull-right">
+    					<a href="{{route('inscription.group.pdf', [$group->id, '2018'])}}" class="btn btn-danger" target="_blank">
+    						<i class="fa fa-file-pdf"></i>
+    					</a>
+    				</div>
     			</div>
     			<div class="panel-body">
     				<table class="table">
@@ -100,6 +105,16 @@
     							<th>Num. Documento</th>
     						</tr>
     					</thead>
+    					<tbody>
+    						@foreach($group->enrollments as $enrollment)
+								<tr>
+									<td>{{$enrollment->student->name}}</td>
+									<td>{{$enrollment->student->last_name}}</td>
+									<td>{{$enrollment->student->identification->identification_type->name}}</td>
+									<td>{{$enrollment->student->identification->identification_number}}</td>
+								</tr>
+    						@endforeach
+    					</tbody>
     				</table>
     			</div>
     		</div>
@@ -108,11 +123,25 @@
 @endsection
 
 @section('js')
-	<script src="{{asset('js/chosen.jquery.js')}}"></script>
-	<script>
-    	$(function() {
-	        $('.chosen-select').chosen({width: "100%"});
-	        $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
-    	});
-	</script>
+<script src="{{asset('js/chosen.jquery.js')}}"></script>
+<script>
+	$(function() {
+	});
+
+	$(document).ready(function(){
+		$('.chosen-select').chosen({width: "100%"});
+		$('.chosen-select-deselect').chosen({ allow_single_deselect: true });
+
+		$(".table").DataTable( {
+			"language": {
+				"url": "{{asset('plugin/DataTables/languaje/Spanish.json')}}"
+			},
+			// "info":     false,
+			"autoWidth": false,
+			"order": [
+				[ 1, "asc" ]
+			],
+		});
+	});
+</script>
 @endsection

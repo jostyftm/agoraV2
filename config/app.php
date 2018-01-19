@@ -236,6 +236,7 @@ return [
         /*
          * Downloaded Aliases
          */
+        'PDF' => Barryvdh\DomPDF\Facade::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,

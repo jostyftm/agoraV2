@@ -46,7 +46,7 @@ class Headquarter extends Model
      */
     public function institution()
     {
-        return $this->hasMany('App\Institution', 'institution_id');
+        return $this->belongsTo(Institution::class, 'institution_id');
     }
     /**
      *
