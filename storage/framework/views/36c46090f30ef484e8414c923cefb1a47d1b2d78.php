@@ -14,15 +14,15 @@
 			  	</div>
 			  	<div class="panel-body">
 
-			  		<table class="table">
+			  		<table class="table" id="table">
 			  			<thead>
 			  				<tr>
 			  					<th>Nombres</th>
 			  					<th>Apellidos</th>
 			  					<th>Tipo de identificación</th>
-			  					<th>Número de identificación</th>
+			  					<th>N° de identificación</th>
 			  					<th>Sede</th>
-			  					
+			  					<th>Grupo</th>
 			  					<th></th>
 			  				</tr>
 			  			</thead>
@@ -34,7 +34,7 @@
 									<td><?php echo e($enrollment->student->identification->identification_type->name); ?></td>
 									<td><?php echo e($enrollment->student->identification->identification_number); ?></td>
 									<td><?php echo e($enrollment->headquarter->name); ?></td>
-									
+									<td><?php echo e(($enrollment->group != null) ? $enrollment->group->name : ''); ?></td>
 
 									<td>
 										<a href="<?php echo e(route('enrollment.edit', $enrollment->id)); ?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
@@ -47,5 +47,20 @@
 			</div>
 		</div>
 	</div>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('js'); ?>
+	<script>
+		$(document).ready(function(){
+
+			$(".table").DataTable( {
+				"language": {
+				    "url": "<?php echo e(asset('plugin/DataTables/languaje/Spanish.json')); ?>"
+				},
+				"info":     false,
+				"autoWidth": false,
+		    });
+		});
+	</script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('institution.dashboard.index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

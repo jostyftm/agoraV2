@@ -38,7 +38,7 @@
 							<a href="<?php echo e(url('/institution/logout')); ?>"
 							onclick="event.preventDefault();
 							document.getElementById('logout-form').submit();">
-							Logout
+							Salir
 						</a>
 
 							<form id="logout-form" action="<?php echo e(url('/institution/logout')); ?>" method="POST" style="display: none;">

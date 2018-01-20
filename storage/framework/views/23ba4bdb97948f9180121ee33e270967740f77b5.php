@@ -4,7 +4,7 @@
 		<li>
             <a href="/institution"> 
             	<span class="fa-stack fa-lg pull-left">
-            		<i class="fa fa-dashboard fa-stack-1x "></i>
+            		<i class="fa fa-home fa-stack-1x "></i>
             	</span>
             	Inicio
             </a>
@@ -13,7 +13,7 @@
         <!-- Grupo -->
         <li class="">
             <a data-toggle="collapse" data-parent="#menu" href="#collapse-headquarter" aria-expanded="true" aria-controls="collapse-headquarter">
-                <span class="fa-stack fa-lg pull-left"><i class="fa fa-institution fa-stack-1x "></i>
+                <span class="fa-stack fa-lg pull-left"><i class="fa fa-building fa-stack-1x "></i>
                 </span> 
                 Sedes
             </a>
@@ -27,7 +27,7 @@
             <a data-toggle="collapse" data-parent="#menu" href="#collapse-inscription" aria-expanded="true" aria-controls="collapse-inscription">
                 <span class="fa-stack fa-lg pull-left"><i class="fa fa-archive fa-stack-1x "></i>
                 </span> 
-                Inscripción
+                Matricula
             </a>
             <ul id="collapse-inscription" class="nav-pills nav-stacked collapse collapseable" style="list-style-type:none;">
                 <li><a href="<?php echo e(route('student.create')); ?>">Crear</a></li>
@@ -38,7 +38,7 @@
         <!-- Grupo -->
         <li class="">
             <a data-toggle="collapse" data-parent="#menu" href="#collapse-group" aria-expanded="true" aria-controls="collapse-group">
-                <span class="fa-stack fa-lg pull-left"><i class="fa fa-group fa-stack-1x "></i>
+                <span class="fa-stack fa-lg pull-left"><i class="fa fa-users fa-stack-1x "></i>
                 </span> 
                 Grupo
             </a>

@@ -280,6 +280,9 @@ class EnrollmentController extends Controller
         // STUDEN
         $student = Student::findOrFail($request->student_id);
 
+        $student->fill($request->all());
+        $student->update();
+
         // ACADEMIC INFORMATION
         $academic_information = AcademicInformation::findOrFail($request->academic_information_id);
         $academic_information->fill($request->all());

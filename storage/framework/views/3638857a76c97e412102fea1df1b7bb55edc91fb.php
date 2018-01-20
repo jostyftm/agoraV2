@@ -53,9 +53,9 @@
                         <div class="form-group">
                             <div class="col-md-12 text-center">
                                 <hr>
-                                <p>
-                                    Para consultar datos o tener información del Año anterior click <a href="">Aqui</a>
-                                </p>
+                                <h4>Año lectivo 2017</h4>
+                                <a href="http://2017.ateneasas.com/app_Login/" class="btn btn-lg btn-primary" target="_blank">Acceso Secretarias</a>
+                                <a href="" class="btn btn-lg btn-primary" target="_blank">Acceso Docentes</a>
                             </div>
                         </div>
                     </form>
