@@ -33,7 +33,7 @@ class Institution extends Authenticatable
      */
     public function headquarters()
     {
-        return $this->hasMany('App\Headquarter', 'institution_id');
+        return $this->hasMany(Headquarter::class, 'institution_id');
     }
 
 	//Send password reset notification

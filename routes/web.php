@@ -81,4 +81,7 @@ Route::group(['prefix'=>'institution', 'middleware' => 'institution_auth'], func
 
 	// Ruta para las sedes
 	Route::resource('headquarter', 'HeadquarterController');	
+
+	// PDF's
+	Route::get('pdf/inscription/{group_id}/{year}', 'PdfController@inscription')->name('inscription.group.pdf');
 });

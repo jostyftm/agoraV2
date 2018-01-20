@@ -19,6 +19,12 @@ class Student extends Model
     	'picture',
     ];
 
+    // 
+    public function getFullNameAttribute()
+    {
+        return "{$this->name} {$this->last_name}";
+    }
+
     /**
      * Obtiene la relacion que hay entre identificacion y estudiante
      */
@@ -164,5 +170,13 @@ class Student extends Model
 
         return $student;
 
+    }
+
+    public static function getGroup($group_id)
+    {
+        return Student::join('enrollment', 'student.id','=','enrollment.student_id')
+        ->where('enrollment.group_id','=',$group_id)
+        ->orderBy('student.last_name', 'ASC')
+        ->get();
     }
 }
