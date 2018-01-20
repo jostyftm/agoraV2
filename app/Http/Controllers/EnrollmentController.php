@@ -399,13 +399,33 @@ class EnrollmentController extends Controller
     public function generateCard(Request $request)
     {
         $institution_id = Auth::guard('web_institution')->user()->id;
-        $grade_id = $request->grade_id;
-        $students_enrollment_card = Enrollment::getEnrollmentCard($grade_id, $institution_id);
+        $typecard = $request->typecard;
+        $students_enrollment_card = [];
+
+        switch ($typecard){
+            case 'byGrade':
+                $grade_id = $request->grade_id;
+                $students_enrollment_card = Enrollment::getEnrollmentCardGrade($grade_id, $institution_id);
+                break;
+            case 'byGroup':
+                $group_id = $request->group_id;
+                $students_enrollment_card = Enrollment::getEnrollmentCardGroup($group_id, $institution_id);
+                break;
+            case 'byStudent':
+                break;
+        }
+
+
+
+        $this->printCard($students_enrollment_card, $institution_id);
+    }
+
+    private function printCard($students, $institution_id){
+
+        $students_enrollment_card = $students;
         $print = new GenerateEnrollmentCard();
         $print->generateEnrollmentCard($students_enrollment_card, $institution_id);
         $print->Output('D', 'fichaMatricula.pdf');
-        //return $students_enrollment_card;
-
     }
 
     public function enrollmentAutocomplete(Request $request)

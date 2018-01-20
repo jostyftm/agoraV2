@@ -43,6 +43,7 @@
 -->
                             <div class="col-md-3">
                                 <div class="form-group" style="padding-top: 25px;">
+                                    <input type="hidden" name="typecard" value="byGrade">
                                     <?php echo Form::submit('Generar Fichas', ['class'=>'btn btn-primary']); ?>
 
                                 </div>
@@ -71,6 +72,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group" style="padding-top: 25px;">
+                                    <input type="hidden" name="typecard" value="byGroup">
                                     <?php echo Form::submit('Generar Fichas', ['class'=>'btn btn-primary']); ?>
 
                                 </div>
@@ -102,6 +104,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group" style="padding-top: 25px;">
+                                    <input type="hidden" name="typecard" value="byStudent">
                                     <?php echo Form::submit('Generar Fichas', ['class'=>'btn btn-primary']); ?>
 
                                 </div>
